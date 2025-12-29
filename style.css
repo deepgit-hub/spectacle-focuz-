@@ -121,13 +121,6 @@
         transform: translate(-50%, -50%);
     }
 }
-.hero-buttons {
-    margin-top: 25px;
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
 
 .hero-nav {
     position: absolute;
@@ -139,6 +132,7 @@
     justify-content: space-between;
     align-items: center;
     z-index: 3;
+    margin-top: 25px;
 }
 .nav-left a {
     text-decoration: none;
@@ -157,18 +151,21 @@
 }
 .nav-right a {
     text-decoration: none;
-    font-size: 0.85rem;
-    margin-left: 20px;
+    font-size: 0.8rem;
+    padding: 7px 16px;
+    margin-right: 14px;
+    border-radius: 22px;
     color: white;
-    opacity: 0.85;
-    transition: opacity 0.3s ease;
+    background: rgba(120,120,120,0.35);
+    transition: all 0.3s ease;
 }
 
 .nav-right a:hover {
-    opacity: 1;
+    background: #8e8e8e;
+    color: black;
 }
 .nav-center {
-    transform: translateX(-60px);
+    transform: translateX(-90px);
 }
 @media (max-width: 768px) {
     .nav-center {
