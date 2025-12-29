@@ -141,5 +141,17 @@
     color: black;          /* white text */
     border-color: #8e8e8e;
 }
+.hero-nav {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    width: 100%;
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 3;
+}
+
 
 
