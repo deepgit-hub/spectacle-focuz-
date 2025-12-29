@@ -228,6 +228,41 @@
         opacity: 0.85;
     }
 }
+/* ===== HERO ARROWS ===== */
+.hero-arrows {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 35px;
+    transform: translateY(-50%);
+    z-index: 3;
+    pointer-events: none; /* important */
+}
+
+.arrow {
+    font-size: 42px;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    opacity: 0.65;
+    transition: all 0.3s ease;
+    pointer-events: auto; /* re-enable click */
+}
+
+.arrow:hover {
+    opacity: 1;
+    transform: scale(1.15);
+}
+
+/* Optional: hide arrows on mobile */
+@media (max-width: 768px) {
+    .hero-arrows {
+        display: none;
+    }
+}
+
 
 
 
