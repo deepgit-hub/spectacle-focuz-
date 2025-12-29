@@ -54,25 +54,20 @@
     </div>
     <!-- Hero Navigation Arrows -->
 <div class="hero-arrows">
-    <span class="arrow prev">&#10094;</span>
-    <span class="arrow next">&#10095;</span>
+    <span class="arrow prev">←</span>
+    <span class="arrow next">→</span>
 </div>
+
 
 
 </section>
 <script>
-    let slides = document.querySelectorAll('.slide');
-    let current = 0;
-
-    setInterval(() => {
-        slides[current].classList.remove('active');
-        current = (current + 1) % slides.length;
-        slides[current].classList.add('active');
-    }, 8000); // 8 seconds
+document.addEventListener("DOMContentLoaded", function () {
 
     const slides = document.querySelectorAll('.slide');
     const nextBtn = document.querySelector('.next');
     const prevBtn = document.querySelector('.prev');
+    const hero = document.querySelector('.hero');
 
     let current = 0;
     let interval;
@@ -101,6 +96,7 @@
         startSlideshow();
     }
 
+    // Arrow controls
     nextBtn.addEventListener('click', () => {
         nextSlide();
         resetSlideshow();
@@ -111,12 +107,9 @@
         resetSlideshow();
     });
 
-    startSlideshow();
-    <script>
+    // Swipe support (mobile)
     let startX = 0;
     let endX = 0;
-
-    const hero = document.querySelector('.hero');
 
     hero.addEventListener('touchstart', (e) => {
         startX = e.touches[0].clientX;
@@ -129,25 +122,20 @@
     hero.addEventListener('touchend', () => {
         const diff = startX - endX;
 
-        if (Math.abs(diff) > 50) { // minimum swipe distance
+        if (Math.abs(diff) > 50) {
             if (diff > 0) {
-                // swipe left → next
                 nextSlide();
             } else {
-                // swipe right → previous
                 prevSlide();
             }
             resetSlideshow();
         }
-
-        startX = 0;
-        endX = 0;
     });
+
+    // Start auto slideshow
+    startSlideshow();
+
+});
 </script>
-
-</script>
-
-
-
 </body>
 </html>
