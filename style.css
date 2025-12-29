@@ -167,6 +167,14 @@
 .nav-right a:hover {
     opacity: 1;
 }
+.nav-center {
+    transform: translateX(-60px);
+}
+@media (max-width: 768px) {
+    .nav-center {
+        transform: translateX(0);
+    }
+}
 
 
 
