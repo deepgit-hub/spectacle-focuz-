@@ -232,48 +232,46 @@
     }
 }
 /* ===== HERO ARROWS ===== */
-/* ===== MINIMAL HERO ARROWS ===== */
-.hero-arrows {
+/* ===== HERO MINIMAL LEFT & RIGHT ARROWS ===== */
+
+.hero-arrows-minimal {
     position: absolute;
-    top: 50%;
-    width: 100%;
+    bottom: 40px;
+    right: 60px;
     display: flex;
-    justify-content: space-between;
-    padding: 0 45px;
-    transform: translateY(-50%);
+    gap: 18px;
     z-index: 3;
-    pointer-events: none;
 }
 
-.arrow {
-    font-size: 22px;              /* minimal size */
-    font-weight: 300;             /* thin look */
-    color: rgba(255, 255, 255, 0.6);
+.hero-arrow {
+    font-size: 28px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.75);
     cursor: pointer;
     user-select: none;
-    pointer-events: auto;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
-.arrow:hover {
+/* subtle motion */
+.hero-arrow.left:hover {
+    transform: translateX(-6px);
     opacity: 1;
-    transform: translateX(-2px);
 }
 
-/* Right arrow hover direction */
-.arrow.next:hover {
-    transform: translateX(2px);
+.hero-arrow.right:hover {
+    transform: translateX(6px);
+    opacity: 1;
 }
 
-/* Optional: show arrows only on hover (desktop luxury feel) */
-.hero:hover .arrow {
-    opacity: 0.85;
-}
-
-/* Hide on mobile (swipe only) */
+/* mobile refinement */
 @media (max-width: 768px) {
-    .hero-arrows {
-        display: none;
+    .hero-arrows-minimal {
+        right: 30px;
+        bottom: 30px;
+    }
+
+    .hero-arrow {
+        font-size: 24px;
     }
 }
 /* ===== SIGNATURE WORKS ===== */
