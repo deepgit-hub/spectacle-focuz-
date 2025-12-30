@@ -83,9 +83,17 @@
     <div class="works-cta">
         <a href="gallery.html">View Full Gallery</a>
     </div>
+    <!-- ===== IMAGE LIGHTBOX ===== -->
+<div class="lightbox" id="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+</div>
+
 </section>
-<script>
+    <script>
 document.addEventListener("DOMContentLoaded", function () {
+
+    /* ================= HERO SLIDESHOW ================= */
 
     const slides = document.querySelectorAll('.slide');
     const nextBtn = document.querySelector('.next');
@@ -119,7 +127,6 @@ document.addEventListener("DOMContentLoaded", function () {
         startSlideshow();
     }
 
-    // Arrow controls
     nextBtn.addEventListener('click', () => {
         nextSlide();
         resetSlideshow();
@@ -130,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
         resetSlideshow();
     });
 
-    // Swipe support (mobile)
+    // Swipe support
     let startX = 0;
     let endX = 0;
 
@@ -144,21 +151,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
     hero.addEventListener('touchend', () => {
         const diff = startX - endX;
-
         if (Math.abs(diff) > 50) {
-            if (diff > 0) {
-                nextSlide();
-            } else {
-                prevSlide();
-            }
+            diff > 0 ? nextSlide() : prevSlide();
             resetSlideshow();
         }
     });
 
-    // Start auto slideshow
     startSlideshow();
+
+
+    /* ================= SIGNATURE WORKS LIGHTBOX ================= */
+
+    const galleryImages = document.querySelectorAll('.masonry-grid img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.querySelector('.lightbox-close');
+
+    galleryImages.forEach(img => {
+        img.addEventListener('click', () => {
+            lightbox.classList.add('active');
+            lightboxImg.src = img.src;
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closeLightbox);
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target !== lightboxImg) {
+            closeLightbox();
+        }
+    });
 
 });
 </script>
+
 </body>
 </html>
