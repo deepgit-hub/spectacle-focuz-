@@ -92,8 +92,6 @@
     <span id="lb-next">›</span>
     <img id="lb-img" src="">
 </div>
-
-
     <script>
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -141,15 +139,15 @@ document.addEventListener("DOMContentLoaded", function () {
         resetSlideshow();
     });
 
-    // Swipe support
+    // Swipe support for hero
     let startX = 0;
     let endX = 0;
 
-    hero.addEventListener('touchstart', (e) => {
+    hero.addEventListener('touchstart', e => {
         startX = e.touches[0].clientX;
     });
 
-    hero.addEventListener('touchmove', (e) => {
+    hero.addEventListener('touchmove', e => {
         endX = e.touches[0].clientX;
     });
 
@@ -164,70 +162,57 @@ document.addEventListener("DOMContentLoaded", function () {
     startSlideshow();
 
 
-/* ================= SIGNATURE WORKS LIGHTBOX + ARROWS ================= */
+    /* ================= SIGNATURE WORKS LIGHTBOX ================= */
 
-const galleryImages = document.querySelectorAll('.masonry-grid img');
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const closeBtn = document.querySelector('.lightbox-close');
-const prevArrow = document.querySelector('.lightbox-arrow.left');
-const nextArrow = document.querySelector('.lightbox-arrow.right');
+    const images = document.querySelectorAll('.masonry-grid img');
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lb-img');
+    const lbClose = document.getElementById('lb-close');
+    const lbNext = document.getElementById('lb-next');
+    const lbPrev = document.getElementById('lb-prev');
 
-let currentIndex = 0;
+    let lbIndex = 0;
 
-galleryImages.forEach((img, index) => {
-    img.addEventListener('click', (e) => {
-        console.log("IMAGE CLICKED", index); // 👈 DEBUG LINE
-
-        e.preventDefault();
-        e.stopPropagation();
-
-        currentIndex = index;
-        showLightboxImage();
-
-        lightbox.classList.add('active');
-        document.documentElement.style.overflow = 'hidden';
-        document.body.style.overflow = 'hidden';
+    images.forEach((img, index) => {
+        img.addEventListener('click', () => {
+            lbIndex = index;
+            lbImg.src = img.src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
     });
-});
 
-function showLightboxImage() {
-    lightboxImg.src = galleryImages[currentIndex].src;
-}
-
-function nextImage() {
-    currentIndex = (currentIndex + 1) % galleryImages.length;
-    showLightboxImage();
-}
-
-function prevImage() {
-    currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-    showLightboxImage();
-}
-
-function closeLightbox() {
-    lightbox.classList.remove('active');
-    document.documentElement.style.overflow = '';
-    document.body.style.overflow = '';
-}
-
-nextArrow.addEventListener('click', (e) => {
-    e.stopPropagation();
-    nextImage();
-});
-
-prevArrow.addEventListener('click', (e) => {
-    e.stopPropagation();
-    prevImage();
-});
-
-closeBtn.addEventListener('click', closeLightbox);
-
-lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-        closeLightbox();
+    function showLB() {
+        lbImg.src = images[lbIndex].src;
     }
+
+    lbNext.addEventListener('click', e => {
+        e.stopPropagation();
+        lbIndex = (lbIndex + 1) % images.length;
+        showLB();
+    });
+
+    lbPrev.addEventListener('click', e => {
+        e.stopPropagation();
+        lbIndex = (lbIndex - 1 + images.length) % images.length;
+        showLB();
+    });
+
+    lbClose.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+
+    lightbox.addEventListener('click', e => {
+        if (e.target === lightbox) {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
 });
 </script>
+
+
 </body>
 </html>
