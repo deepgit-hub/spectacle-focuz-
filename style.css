@@ -243,7 +243,7 @@
     z-index: 5;
 }
 
-.hero-arrow {
+.hero-arrow-minimal {
     font-size: 28px;
     font-weight: 300;
     color: rgba(255, 255, 255, 0.75);
@@ -253,12 +253,12 @@
 }
 
 /* subtle motion */
-.hero-arrow.left:hover {
+.hero-arrow-minimal.left:hover {
     transform: translateX(-6px);
     opacity: 1;
 }
 
-.hero-arrow.right:hover {
+.hero-arrow-minimal.right:hover {
     transform: translateX(6px);
     opacity: 1;
 }
@@ -270,7 +270,7 @@
         bottom: 30px;
     }
 
-    .hero-arrow {
+    .hero-arrow-minimal{
         font-size: 24px;
     }
 }
