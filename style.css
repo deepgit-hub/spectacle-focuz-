@@ -365,85 +365,49 @@
         font-size: 1.8rem;
     }
 }
-/* ===== LIGHTBOX (FIXED) ===== */
-.lightbox {
+/* ===== LIGHTBOX RESET (GUARANTEED) ===== */
+#lightbox {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    inset: 0;
+    background: rgba(0,0,0,0.95);
 
-    background: rgba(0, 0, 0, 0.95);
-
-    display: flex;
-    justify-content: center;
+    display: none;
     align-items: center;
+    justify-content: center;
 
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-
-    z-index: 99999;
+    z-index: 999999;
 }
 
-.lightbox.active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+#lightbox.active {
+    display: flex;
 }
 
-.lightbox-img {
-    max-width: 92vw;
-    max-height: 92vh;
-    object-fit: contain;
+#lb-img {
+    max-width: 90vw;
+    max-height: 90vh;
 }
 
-.lightbox-close {
+#lb-close {
     position: fixed;
-    top: 22px;
-    right: 28px;
+    top: 20px;
+    right: 30px;
     font-size: 34px;
     color: white;
     cursor: pointer;
-    opacity: 0.75;
 }
 
-.lightbox-close:hover {
-    opacity: 1;
-}
-/* ===== LIGHTBOX ARROWS ===== */
-.lightbox-arrow {
+#lb-prev,
+#lb-next {
     position: fixed;
     top: 50%;
-    transform: translateY(-50%);
-    font-size: 36px;
-    color: rgba(255, 255, 255, 0.6);
-
-    user-select: none;
+    font-size: 40px;
+    color: white;
     cursor: pointer;
-
-    z-index: 100000;
-
-    pointer-events: none; 
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
+    user-select: none;
 }
 
-
-.lightbox-arrow:hover {
-    opacity: 1;
-}
-
-.lightbox-arrow.left {
-    left: 24px;
-}
-
-.lightbox-arrow.right {
-    right: 24px;
-}
-.lightbox.active .lightbox-arrow {
-    pointer-events: auto;
-}
+#lb-prev { left: 30px; }
+#lb-next { right: 30px; }
 
 /* Hide arrows on very small screens (swipe later if needed) */
 @media (max-width: 600px) {
