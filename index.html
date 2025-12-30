@@ -178,6 +178,8 @@ let currentIndex = 0;
 
 galleryImages.forEach((img, index) => {
     img.addEventListener('click', (e) => {
+        console.log("IMAGE CLICKED", index); // 👈 DEBUG LINE
+
         e.preventDefault();
         e.stopPropagation();
 
