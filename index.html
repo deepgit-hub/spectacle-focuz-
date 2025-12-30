@@ -84,11 +84,16 @@
         <a href="gallery.html">View Full Gallery</a>
     </div>
     <!-- ===== IMAGE LIGHTBOX ===== -->
+<!-- ===== IMAGE LIGHTBOX ===== -->
 <div class="lightbox" id="lightbox">
     <span class="lightbox-close">&times;</span>
+
+    <!-- Arrows -->
+    <span class="lightbox-arrow left">&#10094;</span>
+    <span class="lightbox-arrow right">&#10095;</span>
+
     <img class="lightbox-img" id="lightbox-img" src="" alt="">
 </div>
-
 </section>
     <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -160,25 +165,44 @@ document.addEventListener("DOMContentLoaded", function () {
     startSlideshow();
 
 
-/* ================= SIGNATURE WORKS LIGHTBOX ================= */
+/* ================= SIGNATURE WORKS LIGHTBOX + ARROWS ================= */
 
 const galleryImages = document.querySelectorAll('.masonry-grid img');
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const closeBtn = document.querySelector('.lightbox-close');
+const prevArrow = document.querySelector('.lightbox-arrow.left');
+const nextArrow = document.querySelector('.lightbox-arrow.right');
 
-galleryImages.forEach(img => {
+let currentIndex = 0;
+
+galleryImages.forEach((img, index) => {
     img.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
 
-        lightboxImg.src = img.src;
-        lightbox.classList.add('active');
+        currentIndex = index;
+        showLightboxImage();
 
+        lightbox.classList.add('active');
         document.documentElement.style.overflow = 'hidden';
         document.body.style.overflow = 'hidden';
     });
 });
+
+function showLightboxImage() {
+    lightboxImg.src = galleryImages[currentIndex].src;
+}
+
+function nextImage() {
+    currentIndex = (currentIndex + 1) % galleryImages.length;
+    showLightboxImage();
+}
+
+function prevImage() {
+    currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+    showLightboxImage();
+}
 
 function closeLightbox() {
     lightbox.classList.remove('active');
@@ -186,10 +210,20 @@ function closeLightbox() {
     document.body.style.overflow = '';
 }
 
+nextArrow.addEventListener('click', (e) => {
+    e.stopPropagation();
+    nextImage();
+});
+
+prevArrow.addEventListener('click', (e) => {
+    e.stopPropagation();
+    prevImage();
+});
+
 closeBtn.addEventListener('click', closeLightbox);
 
 lightbox.addEventListener('click', (e) => {
-    if (e.target !== lightboxImg) {
+    if (e.target === lightbox) {
         closeLightbox();
     }
 });
