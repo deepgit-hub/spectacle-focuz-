@@ -4,62 +4,265 @@
     <meta charset="UTF-8">
     <title>Spectacle Focuz</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #000;
+            color: #fff;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* NAVBAR */
+        .hero-nav {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .hero-nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 12px;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .nav-center img {
+            height: 45px;
+        }
+
+        /* SLIDESHOW */
+        .hero-slideshow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-slideshow img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .hero-slideshow img.active {
+            opacity: 1;
+        }
+
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            z-index: 2;
+        }
+
+        /* HERO CONTENT */
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 3;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            font-size: 1rem;
+            letter-spacing: 2px;
+        }
+
+        /* ARROWS */
+        .hero-arrows-minimal {
+            position: absolute;
+            bottom: 40px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 4;
+        }
+
+        .hero-arrow {
+            cursor: pointer;
+            font-size: 28px;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+            user-select: none;
+        }
+
+        .hero-arrow:hover {
+            opacity: 1;
+        }
+
+        /* ===== SIGNATURE WORKS ===== */
+        .signature-works {
+            padding: 80px 40px;
+            background: #000;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+        }
+
+        .section-header p {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        .masonry-grid {
+            column-count: 4;
+            column-gap: 15px;
+        }
+
+        .masonry-grid img {
+            width: 100%;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: transform 0.4s ease;
+        }
+
+        .masonry-grid img:hover {
+            transform: scale(1.03);
+        }
+
+        .works-cta {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .works-cta a {
+            color: #fff;
+            text-decoration: none;
+            border-bottom: 1px solid #fff;
+            padding-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        /* ===== LIGHTBOX ===== */
+        #lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+
+        #lightbox.active {
+            display: flex;
+        }
+
+        #lightbox img {
+            max-width: 85%;
+            max-height: 85%;
+        }
+
+        #lb-close,
+        #lb-prev,
+        #lb-next {
+            position: absolute;
+            font-size: 35px;
+            cursor: pointer;
+            color: #fff;
+            user-select: none;
+        }
+
+        #lb-close { top: 30px; right: 40px; }
+        #lb-prev { left: 40px; }
+        #lb-next { right: 40px; }
+
+        @media(max-width: 768px) {
+            .masonry-grid { column-count: 2; }
+            .hero-content h1 { font-size: 2rem; }
+        }
+    </style>
 </head>
+
 <body>
 
-<!-- HERO SECTION -->
+<!-- ===== HERO ===== -->
 <section class="hero">
+
     <nav class="hero-nav">
+        <div class="nav-left">
+            <a href="weddingphotography.html">Wedding</a>
+            <a href="maternityphotoshoot.html">Maternity</a>
+            <a href="babyphotoshoot.html">Baby</a>
+            <a href="productphotoshoot.html">Product</a>
+        </div>
 
-    <!-- LEFT : Services -->
-    <div class="nav-left">
-        <a href="weddingphotography.html">Wedding</a>
-        <a href="maternityphotoshoot.html">Maternity</a>
-        <a href="babyphotoshoot.html">Baby</a>
-        <a href="productphotoshoot.html">Product</a>
-    </div>
+        <div class="nav-center">
+            <img src="logo.png" alt="Spectacle Focuz">
+        </div>
 
-    <!-- CENTER : Logo -->
-    <div class="nav-center">
-        <img src="logo.png" alt="logo">
-    </div>
-
-    <!-- RIGHT : About / Contact -->
-    <div class="nav-right">
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-    </div>
-
-</nav>
-
+        <div class="nav-right">
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
 
     <div class="hero-slideshow">
-        <img src="hero1.jpg" class="slide active">
-        <img src="hero2.jpg" class="slide">
-        <img src="hero3.jpg" class="slide">
-        <img src="hero4.jpg" class="slide">
-        <img src="hero5.jpg" class="slide">
+        <img src="hero1.jpg" class="active">
+        <img src="hero2.jpg">
+        <img src="hero3.jpg">
+        <img src="hero4.jpg">
+        <img src="hero5.jpg">
     </div>
 
     <div class="overlay"></div>
 
     <div class="hero-content">
-        
         <h1>Stories From Spectacle Focuz</h1>
         <p>Capturing Moments That Last Forever</p>
     </div>
-    <!-- Hero Navigation Arrows -->
-<div class="hero-arrows-minimal">
-    <span class="hero-arrow left">←</span>
-    <span class="hero-arrow right">→</span>
-</div>
 
-    </section>
-    <!-- ===== SIGNATURE WORKS ===== -->
+    <div class="hero-arrows-minimal">
+        <span class="hero-arrow left">←</span>
+        <span class="hero-arrow right">→</span>
+    </div>
+
+</section>
+
+<!-- ===== SIGNATURE WORKS ===== -->
 <section class="signature-works">
     <div class="section-header">
         <h2>Signature Works</h2>
@@ -67,48 +270,42 @@
     </div>
 
     <div class="masonry-grid">
-        <img src="works1.jpg" alt="">
-        <img src="works2.jpg" alt="">
-        <img src="works3.jpg" alt="">
-        <img src="works6.jpg" alt="">
-        <img src="works5.jpg" alt="">
-        <img src="works4.jpg" alt="">
-        <img src="works7.jpg" alt="">
-        <img src="works8.jpg" alt="">
-        <img src="works9.jpg" alt="">
-        <img src="works10.jpg" alt="">
-        <img src="works11.jpg" alt="">
-        <img src="works12.jpg" alt="">
+        <img src="works1.jpg">
+        <img src="works2.jpg">
+        <img src="works3.jpg">
+        <img src="works4.jpg">
+        <img src="works5.jpg">
+        <img src="works6.jpg">
+        <img src="works7.jpg">
+        <img src="works8.jpg">
     </div>
 
     <div class="works-cta">
         <a href="gallery.html">View Full Gallery</a>
     </div>
-    </section>
-<!-- ===== IMAGE LIGHTBOX ===== -->
+</section>
+
 <!-- ===== LIGHTBOX ===== -->
 <div id="lightbox">
     <span id="lb-close">×</span>
     <span id="lb-prev">‹</span>
     <span id="lb-next">›</span>
-    <img id="lb-img" src="">
+    <img id="lb-img">
 </div>
-    <script>
-document.addEventListener("DOMContentLoaded", function () {
 
-    /* ================= HERO SLIDESHOW ================= */
+<script>
+document.addEventListener("DOMContentLoaded", () => {
 
-    const slides = document.querySelectorAll('.slide');
-    const nextBtn = document.querySelector('.next');
-    const prevBtn = document.querySelector('.prev');
-    const hero = document.querySelector('.hero');
+    /* HERO SLIDESHOW */
+    const slides = document.querySelectorAll(".hero-slideshow img");
+    const nextBtn = document.querySelector(".hero-arrow.right");
+    const prevBtn = document.querySelector(".hero-arrow.left");
 
     let current = 0;
-    let interval;
 
-    function showSlide(index) {
-        slides.forEach(slide => slide.classList.remove('active'));
-        slides[index].classList.add('active');
+    function showSlide(i) {
+        slides.forEach(slide => slide.classList.remove("active"));
+        slides[i].classList.add("active");
     }
 
     function nextSlide() {
@@ -121,99 +318,48 @@ document.addEventListener("DOMContentLoaded", function () {
         showSlide(current);
     }
 
-    function startSlideshow() {
-        interval = setInterval(nextSlide, 8000);
-    }
+    setInterval(nextSlide, 8000);
 
-    function resetSlideshow() {
-        clearInterval(interval);
-        startSlideshow();
-    }
+    nextBtn.onclick = nextSlide;
+    prevBtn.onclick = prevSlide;
 
-    nextBtn.addEventListener('click', () => {
-        nextSlide();
-        resetSlideshow();
-    });
+    /* LIGHTBOX */
+    const images = document.querySelectorAll(".masonry-grid img");
+    const lightbox = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lb-img");
+    const lbClose = document.getElementById("lb-close");
+    const lbNext = document.getElementById("lb-next");
+    const lbPrev = document.getElementById("lb-prev");
 
-    prevBtn.addEventListener('click', () => {
-        prevSlide();
-        resetSlideshow();
-    });
+    let index = 0;
 
-    // Swipe support for hero
-    let startX = 0;
-    let endX = 0;
-
-    hero.addEventListener('touchstart', e => {
-        startX = e.touches[0].clientX;
-    });
-
-    hero.addEventListener('touchmove', e => {
-        endX = e.touches[0].clientX;
-    });
-
-    hero.addEventListener('touchend', () => {
-        const diff = startX - endX;
-        if (Math.abs(diff) > 50) {
-            diff > 0 ? nextSlide() : prevSlide();
-            resetSlideshow();
-        }
-    });
-
-    startSlideshow();
-
-
-    /* ================= SIGNATURE WORKS LIGHTBOX ================= */
-
-    const images = document.querySelectorAll('.masonry-grid img');
-    const lightbox = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lb-img');
-    const lbClose = document.getElementById('lb-close');
-    const lbNext = document.getElementById('lb-next');
-    const lbPrev = document.getElementById('lb-prev');
-
-    let lbIndex = 0;
-
-    images.forEach((img, index) => {
-        img.addEventListener('click', () => {
-            lbIndex = index;
+    images.forEach((img, i) => {
+        img.onclick = () => {
+            index = i;
             lbImg.src = img.src;
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
+            lightbox.classList.add("active");
+        };
     });
 
-    function showLB() {
-        lbImg.src = images[lbIndex].src;
+    function updateLB() {
+        lbImg.src = images[index].src;
     }
 
-    lbNext.addEventListener('click', e => {
-        e.stopPropagation();
-        lbIndex = (lbIndex + 1) % images.length;
-        showLB();
-    });
+    lbNext.onclick = () => {
+        index = (index + 1) % images.length;
+        updateLB();
+    };
 
-    lbPrev.addEventListener('click', e => {
-        e.stopPropagation();
-        lbIndex = (lbIndex - 1 + images.length) % images.length;
-        showLB();
-    });
+    lbPrev.onclick = () => {
+        index = (index - 1 + images.length) % images.length;
+        updateLB();
+    };
 
-    lbClose.addEventListener('click', () => {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = '';
-    });
-
-    lightbox.addEventListener('click', e => {
-        if (e.target === lightbox) {
-            lightbox.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-    });
-
+    lbClose.onclick = () => {
+        lightbox.classList.remove("active");
+    };
 });
 </script>
-
 
 </body>
 </html>
